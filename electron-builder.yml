@@ -1,0 +1,32 @@
+appId: com.meetpilot.desktop
+productName: MeetPilot AI
+directories:
+  output: dist
+  buildResources: build
+files:
+  - out/**/*
+  - package.json
+  - '!**/*.map'
+asar: true
+asarUnpack:
+  - node_modules/sql.js/dist/*.wasm
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+  icon: build/icon.ico
+  signExecutable: false
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  installerIcon: build/icon.ico
+  uninstallerIcon: build/icon.ico
+  artifactName: MeetPilot-AI-${version}-${arch}-Setup.${ext}
+linux:
+  target: dir
+  icon: build/icon.png
+toolsets:
+  wine: '1.0.1'
