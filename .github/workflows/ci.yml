@@ -1,0 +1,28 @@
+name: Validate and package
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm run format:check
+      - run: npm run smoke
+      - run: npm run build:win
+      - uses: actions/upload-artifact@v7
+        with:
+          name: meetpilot-windows
+          path: |
+            dist/*Setup.exe
+            artifacts/*.png
+          if-no-files-found: error

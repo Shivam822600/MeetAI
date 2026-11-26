@@ -1,0 +1,15 @@
+node_modules/
+out/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+*.log
+*.db
+*.db-*
+*.pem
+*.key
+.smoke-data/
+artifacts/
+!tests/fixtures/localhost-test.key
